@@ -25,7 +25,7 @@ jobs:
           POSTGRES_DB: test_queuedesk
         ports: ['5432:5432']
         options: >-
-          --health-cmd 'pg_isready -U queuedesk -d test_queuedesk'
+          --health-cmd "pg_isready -U queuedesk -d test_queuedesk"
           --health-interval 5s --health-timeout 3s --health-retries 20
     steps:
       - uses: actions/checkout@v5
