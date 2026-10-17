@@ -79,3 +79,18 @@ DOCKER COMPOSE RESULT REPORTED BY USER — 2026-10-17
 - Frontend bound to localhost:3000; backend bound to localhost:18001.
 - This supersedes the earlier Docker download/build limitation.
 - Browser CRUD confirmation and screenshot collection are still pending.
+
+CI AND BACKEND IMAGE FIX — 2026-10-17
+- GitHub Actions run 39038743824 passed the complete test job, including
+  PostgreSQL tests, frontend build, Helm checks and Terraform validation.
+- The release job failed its backend Trivy scan; the frontend scan passed.
+- Local scan of the original Debian backend: 44 HIGH OS-package findings,
+  zero HIGH/CRITICAL Python dependency findings.
+- Changed the backend base to Python 3.12 Alpine and retained UID 10001.
+- Local replacement-image build used the AWS public mirror of the official
+  Python image because Docker Hub DNS was failing.
+- Replacement image: zero HIGH/CRITICAL vulnerability findings and zero
+  detected secrets with Trivy 0.76.0; blocking exit-code gate passed.
+- Existing API/migration suite inside the Alpine image: 18 tests passed.
+- Non-root runtime, API import and PostgreSQL driver loading passed.
+- Corrected image change still needs committing/pushing and a fresh CI run.

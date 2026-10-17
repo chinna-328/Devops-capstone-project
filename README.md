@@ -115,7 +115,7 @@ evidence/                Actual verification and evidence collection instruction
 
 ## Current status
 
-The 18 backend tests pass with SQLite and PostgreSQL. The frontend production build, Helm lint/rendering and local HTTP smoke check also pass. The reported Docker Compose run built both images, completed the migration, and started healthy PostgreSQL, backend and frontend containers. Terraform provider initialization previously hit network failures and still needs to be rerun. AWS deployment and the live monitoring setup have not been verified; the checklist lists the remaining evidence.
+The 18 backend tests pass with SQLite and PostgreSQL. The frontend production build, Helm lint/rendering and local HTTP smoke check also pass. The reported Docker Compose run built both images, completed the migration, and started healthy PostgreSQL, backend and frontend containers. GitHub Actions now passes tests, frontend build, Helm checks and Terraform validation. The backend image was changed to Python Alpine after the original Debian image failed Trivy; the replacement image passes the local HIGH/CRITICAL gate. AWS deployment and the live monitoring setup have not been verified; the checklist lists the remaining evidence.
 
 Authentication, HTTPS and database backups are outside this demo's current scope. Use sample data. Helm rollback restores the application release but does not undo database migrations.
 

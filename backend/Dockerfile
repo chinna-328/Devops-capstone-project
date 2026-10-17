@@ -1,10 +1,10 @@
-FROM python:3.12-slim
+FROM python:3.12-alpine
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt \
-    && groupadd --gid 10001 app \
-    && useradd --uid 10001 --gid app --no-create-home app
+    && addgroup -g 10001 app \
+    && adduser -D -H -u 10001 -G app app
 COPY --chown=10001:10001 app ./app
 COPY --chown=10001:10001 alembic ./alembic
 COPY --chown=10001:10001 alembic.ini ./

@@ -71,3 +71,5 @@ kubectl delete -f troubleshooting/broken-service.yaml
 ## Trivy blocks a release
 
 Read the package name, installed version, fixed version and CVE advisory in the report. Update the affected dependency/base image, regenerate locks where appropriate, rebuild, and rerun the scans. A CVE with no fix still fails this pipeline. Do not silently lower severity, add `continue-on-error`, or enable `ignore-unfixed` to make the release green. Capture the actual report and explain whether the finding concerns an OS package or an application dependency.
+
+The original backend image produced 44 HIGH findings in Debian OS packages, including ncurses (CVE-2025-69720); the Python dependency section had no HIGH/CRITICAL findings. Switching to the Python 3.12 Alpine base removed those affected OS packages, and the replacement image passed the same local Trivy gate with zero HIGH/CRITICAL findings on October 17, 2026. The workflow still blocks publication if either image fails its scan.
