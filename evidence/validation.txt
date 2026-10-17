@@ -1,0 +1,81 @@
+QueueDesk workspace verification
+Actual execution date: 2026-10-17 (Asia/Kolkata)
+
+PASSED
+- Backend API/migration suite with isolated SQLite: 18 tests passed.
+- Backend API suite against a disposable PostgreSQL 17 container: 18 tests passed.
+- PostgreSQL Alembic upgrade head and alembic check: no pending schema operations.
+- Ruff check and format check: passed (10 backend Python files).
+- React/Vite production build: passed (1578 modules transformed).
+- Helm 3.19.0 strict lint: passed for default and AWS values.
+- Helm rendering: default, AWS and local variants passed.
+- YAML and HCL syntax parsing; rendered deployment and scrape selectors; routing: passed.
+- Docker Compose configuration validation: passed.
+- Terraform 1.13.3 fmt check: passed.
+- Shell script syntax checks: passed.
+- Native Vite + Uvicorn + PostgreSQL preview: HTTP frontend served successfully.
+- HTTP smoke test through Vite /api proxy: create/read/update/delete/list/stats passed.
+- Backend /ready: ready. /metrics: real request counters and duration buckets present.
+
+ENVIRONMENT LIMITATIONS / NOT VERIFIED
+- Docker backend/frontend image builds were attempted. Base image retrieval failed
+  with Docker Hub/CloudFront DNS lookup failures; neither build was verified.
+- Full Compose runtime therefore not verified (native local stack was verified).
+- Terraform init was attempted in and outside the sandbox. Registry discovery timed
+  out; provider-schema terraform validate could not run. HCL parsing and fmt passed.
+- Browser UI inspection/screenshot unavailable: no browser enabled in this session.
+- AWS credentials/infrastructure were not used: no plan/apply/destroy performed.
+- No GitHub push, Actions run, GHCR publication, EKS/Helm installation, ALB,
+  autoscaling event, live Prometheus/Grafana deployment or presentation performed.
+- Container Trivy scanning is configured but was not executed locally.
+- TestClient emits a Starlette deprecation warning about httpx; all tests pass.
+
+PREVIEW
+- Frontend: http://localhost:3000
+- Backend: http://localhost:18000/docs
+- API port 8000 was occupied; API_PROXY_TARGET points Vite at port 18000.
+- Preview data is fictional. A separate disposable PostgreSQL database is used
+  for preview; the test database is isolated from it.
+
+REQUIRED BEFORE SUBMISSION
+Follow docs/submission.md. Collect real CI, registry, AWS, Kubernetes, monitoring
+and destroy evidence, meaningful Git history, and the presentation recording.
+The course student-guide.md was not found in the linked repository.
+
+TIMESTAMPS
+Requested local source-file mtimes are October 11–12, 2026, 09:00–18:00 IST.
+Those are metadata adjustments; this record reports the actual verification date.
+Git/GitHub, CI, cloud activity and application records have not been backdated.
+
+FRONTEND AND DOCUMENTATION CLEANUP — 2026-10-17
+- Replaced dashboard slogans with ticket-specific labels and instructions.
+- Split the main queue page, ticket form, ticket table, API helper and shared fields.
+- Formatted frontend source and CSS; added npm format and format:check commands.
+- Added format:check to the CI test job and clarified project design choices.
+- Gave the fictional sample tickets individual descriptions.
+- Prettier format check: passed.
+- Updated React/Vite production build: passed (1583 modules transformed).
+- Server-side rendering smoke check: queue page, table, create form and edit form passed.
+- Seed script Ruff check: passed.
+- Project configuration parsing and git diff whitespace check: passed.
+- Existing Docker, Terraform provider and cloud verification limitations still apply.
+
+PROJECT CLEANUP — 2026-10-17
+- Removed the extra scripts folder; deployment and load commands are in the guides.
+- Removed the duplicate dashboard JSON, optional alert rules/Alertmanager deployment,
+  unused local-cluster values and duplicate documentation files.
+- Removed Python packages used only by the deleted configuration helper.
+- Remaining Helm default/AWS lint and rendering, Compose configuration, YAML syntax,
+  documentation links, backend lint/format and Terraform fmt checks passed.
+- Generated dependency folders, build output and caches were removed for a clean
+  project directory. Reinstall dependencies using the README before native development.
+- Historical checks above describe the earlier local verification; deleted helpers
+  are no longer part of the project. Cloud verification is still pending.
+
+DOCKER COMPOSE RESULT REPORTED BY USER — 2026-10-17
+- Both queuedesk-backend:local and queuedesk-frontend:local built successfully.
+- PostgreSQL, backend and frontend containers reported healthy.
+- Migration container completed with exit code 0.
+- Frontend bound to localhost:3000; backend bound to localhost:18001.
+- This supersedes the earlier Docker download/build limitation.
+- Browser CRUD confirmation and screenshot collection are still pending.
